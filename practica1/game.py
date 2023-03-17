@@ -1,8 +1,5 @@
 """
 Materia: Seminario de Lenguaje - Python
-Nombre: Franco Rodriguez
-Legajo:21390/7
-Dia: 15/03/23
 Actividad a hacer:
 Modifíque el programa anterior para que:
 -Agregar las operaciones multiplicación (*) y división (/) al juego.
