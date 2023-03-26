@@ -109,3 +109,31 @@ dic.values() #lista con valores
 dic.items() #lista con claves y valores
 
 dict([(n, ord(n)) for n in string.digits])#Constructor
+
+#CONJUNTOS
+#Coleccion heterogenea, desordenada, valores unicos, no idexada
+set(("Soda Stéreo", "La Renga"))
+set('alabanza') # {'a', 'b', 'l', 'z', 'n'}
+bandas = {"AC/DC", "Metallica", "Greta Van Fleet", "Soda Stéreo", "Los Piojos"}
+for elem in bandas: #recorrer
+    print(elem)
+"""
+Operaciones matemáticas sobre conjuntos:
+    in: retonar si un elemento pertenece o no a un conjunto.
+    |: unión entre dos conjuntos.
+    &: intersección entre dos conjuntos.
+    -: diferencia de conjuntos
+"""
+bandas = {"AC/DC", "Metallica", "Greta Van Fleet", "Soda Stéreo", "Los Piojos"}
+bandas_nacionales = set(("Soda Stéreo", "La Renga", "Los Piojos"))
+print("Los Piojos" in bandas) # True
+todos = bandas | bandas_nacionales
+en_ambos = bandas & bandas_nacionales
+internacionales = bandas - bandas_nacionales
+bandas.add("Foo Fighters") #Agregar
+bandas.issubset() # boolean es un subconjunto de otro conjunto
+bandas.isdisjoint() # disjuntos
+bandas.issuperset() # es un superconjunto de otro conjunto
+bandas.update() #Agrega elementos de un conjunto
+bandas.discard("Soda Stéreo")  #Borra elemento si existe
+bandas.remove("Foo Fighters") #Trata de borrar elemento, si no existe da error
