@@ -22,8 +22,6 @@ cad.islower() #False
 cad.isupper() #False
 cad.count("a") #3
 cad.center(70, "*") #'*******************Holaaa********************'
-cadena.startswith("2")
-cadena.endswith(("ar", "er", "ir"))
 cad.strip() # Elimina todos los caracteres que esten como parametros
 cadena.startswith("2") #bool si comienza con ese valor
 cadena.endswith(("ar", "er", "ir")) #bool si comienza con esos valores. Se pasa una tupla
@@ -59,7 +57,7 @@ range(valor_final) # '0,1,2,3,4,5,6,7,8,9'
 
 #print
 #f-String
-nombre = Lionel
+nombre = 'Lionel'
 intento = 4
 print(f'Hola {nombre} !! Intestaste {intento}')
 'Hola Lionel !! Intentaste 4'
