@@ -85,8 +85,11 @@ varios = [1, "dos", [3, "cuatro"], True] #Heteregeneas
 varios[2][1] = [3, "cuatro"]
 #Metodos
 lista.append(x) #agrega atras
+lista.sort() #ordena lista
+sorted(lista, key=str.lower) #ordena, considerando a todos los str como lower
 sum(list) #suma de los elementos(numeros) de la lista
 len(list) #cantidad de elemntos
+
 lista2 = []
 lista2 = lista.copy() #Copiar para no hacer referencia a la misma
 duracion_pelis = [152, 161, 142, 157, 138, 153, 146, 130]
@@ -135,3 +138,87 @@ bandas.issuperset() # es un superconjunto de otro conjunto
 bandas.update() #Agrega elementos de un conjunto
 bandas.discard("Soda Stéreo")  #Borra elemento si existe
 bandas.remove("Foo Fighters") #Trata de borrar elemento, si no existe da error
+
+
+
+#funciones
+def funcion(parametros):
+    """ Aca va el docstring """
+    sentencias
+    return <expresion> #Puede no ir el return
+
+    return cant_aeo, cant_iu, len(cadena) #devuelve una tupla
+#parametros
+def mi_musica(dicci_musica, tipo_musica="internacional", nombre="lisa"): #los que tienen valores por defecto siempre van al final de la lista de parámetros
+    return None
+
+#Usar los argumentos indefinidos como listas
+def imprimo(*args): #puede ir cualquier nombre
+    """ Esta función imprime los argumentos y sus tipos"""
+    for valor in args:
+        print(f"{valor} es de tipo {type(valor)}")
+
+#Usar los argumentos indefinidos como diccionarios
+def imprimo_otros_valores(**kwargs): #puede ir cualquier nombre
+    """ ..... """
+    for clave, valor in kwargs.items():
+        print(f"{clave} es {valor}")
+secuencia = (1, 2, 3)
+
+#Pasar argumento como diccionario
+secuencia = (1, 2, 3) #En este caso paso 3 valores y no 1 lista.
+imprimo(*secuencia)
+
+#Pasar Diccionario como diccionario
+contacto = {"nombre": "Messi", "celu": 12345}#En este caso paso 2 claves y 2 valores, no 1 diccionario.
+imprimo_otros_valores(**contacto)
+
+#Variables locales y globales
+def prueba():
+    y = 1
+    def prueba_2():
+        nonlocal y #para poder acceder a la variable anterior a la funcion
+        y = 11
+        return 1
+    
+    global x #para acceder a variable global
+    x = 3
+    
+#Espacio de nombres
+"""Cuando se invoca a una función, se crea un espacio de nombres local con todos los recursos
+definidos en la función y que se elimina cuando la función finaliza su ejecución.
+"""
+
+
+"""...
+Simple es mejor que complejo.
+...
+Plano es mejor que anidado.
+...
+Espaciado es mejor que denso.
+La legibilidad es importante.
+..."""
+
+#Atributos de funciones
+funcion.__doc__ #es el docstring**.
+funcion.__name__ # es una cadena con el nombre la función.
+funcion.__defaults__# una tupla con los valores por defecto de los parámetros
+
+
+#Lambda - Funciones anonimas
+lambda parametros : expresion
+
+lista_de_acciones = [lambda x: x * 2, lambda x: x * 3]
+for accion in lista_de_acciones:
+    print(accion(2))
+
+def make_incrementor(n):
+    return lambda x: x + n
+f = make_incrementor(2)
+print(f(42))
+print(make_incrementor(22)(33))
+
+#map
+map(funcion, lista) #aplica una funcion en cada elemento de la lista, y retorna una estructura de datos tipo map
+#filter
+filter(funcion,lista) #aplica funcion en cada elemento de la lista, y retorna una estructura con los valores que cumpla la condicion
