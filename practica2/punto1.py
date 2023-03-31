@@ -72,9 +72,9 @@ guide](https://opensource.guide/how-to-contribute/) helps explain why, what,
 and how to successfully get involved."""
 
 print(f"{'Punto1':-^40}")
-list_readme = readme.split() 
+list_readme = readme.split("\n") 
 for word in list_readme:
-    if word.startswith("http") | word.startswith("https"):
+    if "http" in word or "https" in word:
         print(word)
 
 
@@ -92,8 +92,6 @@ print(f"La palabra que mas aparece es: '{max_word}' . Aparecio {count_list.get(m
 
 
 print(f"{'Punto3':-^40}")
-"""CONSULTAS: Devuelve pero con otros caracteres, los tengo que sacar?
-"""
 import string
 jupyter_info = """ JupyterLab is a web-based interactive development
 environment for Jupyter notebooks,
@@ -103,21 +101,20 @@ of workflows in data science, scientific computing, and machine learning.
 JupyterLab is extensible and
 modular: write plugins that add new components and integrate with existing
 ones. """
-""" EJERCICIO
+
+"""
 character = input("Ingresa una letra a buscar: ")
 while not(character in string.ascii_letters):
     character = input("El valor ingresado no es una letra. Ingresa una letra: ")
-jupyter_list = jupyter_info.split(" ")
+jupyter_list = jupyter_info.split()
 for word in jupyter_list:
-    if character in word:
+    if word.lower().startswith(character.lower()):
         print(word, end=" - ")
 print()
 """
 
 
 print(f"{'Punto4':-^40}")
-""" CONSULTAS: hay solo 5 oraciones, en el practico la suma de cantidad de oracines es 6.
-"""
 evaluar = """ título: Experiences in Developing a Distributed Agent-based
 Modeling Toolkit with Python
 resumen: Distributed agent-based modeling (ABM) on high-performance
@@ -136,13 +133,14 @@ evaluar_list = evaluar.split('resumen:') #divido titulo de resumen
 title_list = evaluar_list[0].split() #divido el titulo en palabras
 title_list.pop(0) #saco la palabra titulo:
 body = evaluar_list[1].split('\n') #divido de a cuerdo a  los saltos de linea del resumen
-body_list = "".join(body).split('.') #lo hago string y luego divido las oracion por puntos
+body_list = " ".join(body).split('.') #lo hago string y luego divido las oracion por puntos
+body_list = body_list[:-1] #saco el ultimo elemento que es un espacio
 cant_pray = {'facil': 0, 'aceptable': 0, 'dificil': 0,'muy_dificil':0} #contador de frases
 for prayer in body_list:
     match len(prayer.split()):
-        case lenght if 0 < lenght < 13: cant_pray['facil'] += 1
-        case lenght if 12 < lenght > 18: cant_pray['aceptable'] += 1
-        case lenght if 17 < lenght > 26: cant_pray['dificil'] += 1
+        case lenght if lenght < 13: cant_pray['facil'] += 1 #Si no pongo el 0 me sale como el ejemplo, cosa que estaria mal ya que un espacio no es una palabra
+        case lenght if 12 < lenght < 18: cant_pray['aceptable'] += 1
+        case lenght if 17 < lenght < 26: cant_pray['dificil'] += 1
         case lenght if lenght > 25: cant_pray['muy_dificil'] += 1
 if len(title_list) < 11:
     print('Titulo: ok')
@@ -151,7 +149,7 @@ else:
 print(f"Cantidad de oraciones faciles de leer {cant_pray['facil']}, aceptables para leer: {cant_pray['aceptable']}, dificil de leer {cant_pray['dificil']}, muy dificiles de leer {cant_pray['muy_dificil']}")
 
 
-
+"""
 print(f"{'Punto 5':-^40}")
 import collections
 phrase = input('Ingresar frase: ')
@@ -159,3 +157,46 @@ word = input('Ingresar palabra: ')
 phrase_list = phrase.lower().replace(',','').replace('.','').split()
 cant = collections.Counter(phrase_list)
 print(cant[word.lower()])
+"""
+"""
+print(f"{'Punto 6 ':-^40}")
+palabra = input("Ingresá una palabra: ")
+if "a" in palabra and "n" in palabra:
+    print("Hay letras a y n.")
+else:
+    print("No hay letras a y n. ")
+"""
+print(f"{'Punto 7':-^40}")
+import string
+import collections
+texto = """
+El salario promedio de un hombre en Argentina es de $60.000, mientras que
+el de una mujer es de $45.000. Además, las mujeres tienen menos
+posibilidades de acceder a puestos de liderazgo en las empresas.
+"""
+texto = texto.replace('\n',' ')
+count = {'mayus':0,'minus':0,'no_letras':0}
+for letter in texto:
+    match letter:
+        case letter if letter in string.ascii_lowercase:
+            count['minus']+=1
+        case letter if letter in string.ascii_uppercase:
+            count['mayus']+=1
+        case _:
+            count['no_letras']+=1
+        
+texto_list = texto.lower().split()
+count_text = collections.Counter(texto_list)
+for elem in count_text:
+    print(f"La palabra '{elem}' aparece {count_text[elem]} veces.")
+
+print(f"{'Punto 8':-^40}")
+from collections import Counter
+word = input("Ingrese una palabra o frase: ")
+word = word.replace(" ","")
+word_coun = Counter(word)
+match = False
+while match and :
+
+
+
