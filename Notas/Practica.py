@@ -229,5 +229,63 @@ digitos = string.digits #'0123456789'
 __all__ = ["echo","surround"] #esta variable puede estar en __init__.py, y si importamos todo de un packete que contiene mas paquetes, solo va a importar los modulos que esten en esta lista
 
 
+#NUevas lineas
 
+#Archivos 
+if __name__ == "__main__": #Sirve para que se ejecute automaticamente
+    import sys
+    uno(sys.argv[1]) #argv[0] = nombre del archivo; argv[1] = parametro escrito por consola
+open(nombreArchivo)#crea la asignacion dentro del programa con el archivo y en modo 'r'
+open(nombre,modo)
+modo = {'r':'read','w':'write','a':'append','x':'create'} # 'r'(escritura) y 'w'(escritura) pone el puntero al principio mientras que el 'a' al final. 'x' da error si ek archivo existe
+# puede tener un + o un b ademas de las claves del diccionario. con + agrega permisos de lectura/escritura y con b significa que es binario
+arch = open('archivo.txt','w') #Crea archivo.txt para escritura en la misma carpeta del script
+# FileExistError si ya esta creado
+import locale
+locale.getLocale()#Saber codificaion, encoding
 
+import os
+ruta = os.path.dirname(os.path.realpath(".")) #ruta actual del archivo
+ruta_completa = os.path.join(ruta,"carp1","carp2","archivo.txt")#genera una ruta con las carpetas aniadidas
+
+#Almacenar datos en un archivo
+f = open("archivo.txt",'w')
+f.write('En Argentina naci') #Agrega el string al archivo y retorna la cantidad de caracteres que pudo guardar
+f.read(x)#lee el archivo siendo x la cantidad de veces que se mueve el puntero
+f.close() #cierra el archivo
+if f.read() == "":
+    print('Esta en EOF')
+f.readlines()#retorna lineas
+for linea in f: #leer lineas
+    print(linea)
+#JSON Forma de intercambio de datos
+import json
+diccionario = {"equipo": "Bestia", "esport": "CSGO", "pais": "Argentina"}
+lista_de_dic = [{"equipo": "Bestia", "esport": "CSGO", "pais": "Argentina"}, {"equipo": "equipo2", "esport": "CSGO", "pais": "Argentina"}]
+json.dumps(lista_de_dic, indent=4)#Devuelve string
+json.dump(lista_de_dics,archivo)#de Python a JSOn . guarda lista de dic en formato JSON en archivo
+loads()#de JSON a formato Python para string
+lista_de_dic = json.load(archivo) #convierte JSON a Python. Y guarda el diccionario o lista en la varible 
+#Datasets
+#formato CSV
+#Comma Separated Value
+import csv
+csvreader = csv.reader(archivo,delimiter = ',') #genera un objeto iterador, y el delimiter es el archivo que separa los datos
+encabezado = next(csvreader)
+for linea in csvreader:
+    if linea[1] == "Movie":
+        print(f"{linea[2]:<40 {linea[3]}}")
+show_ar = filter(lambda x:x[5] == "argentina" and x[1] == "Movie", csvreader)
+
+csvreader = csv.DictReader(archivo, delimiter='-') #genera Diccionario
+
+archivo_csv_ = open("bandas.csv","w")
+writer = csv.writer(archivo_csv)
+writer.writerow(['Colum1','Colum2']) #Escribe fila
+
+#with
+with open("bandas.csv") as archcsv:
+    csv_reader = csv.reader(archcv, delimiter=',')
+
+#cierra automaticamente el archivo
+#Desafio
