@@ -222,3 +222,5 @@ print(make_incrementor(22)(33))
 map(funcion, lista) #aplica una funcion en cada elemento de la lista, y retorna una estructura de datos tipo map
 #filter
 filter(funcion,lista) #aplica funcion en cada elemento de la lista, y retorna una estructura con los valores que cumpla la condicion
+
+#Archivos
