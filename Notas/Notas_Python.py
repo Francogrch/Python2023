@@ -253,7 +253,8 @@ mayusculas = string.ascii_uppercase# 'ABCDEF...Z'
 digitos = string.digits #'0123456789'
 
 #__init__.py si este archivo esta en la carpeta, python interpreta el directorio como un paquete
-__all__ = ["echo","surround"] #esta variable puede estar en __init__.py, y si importamos todo de un packete que contiene mas paquetes, solo va a importar los modulos que esten en esta lista
+#from package import ** , solo importa lo que este en __all__
+__all__ = ["echo","surround"] #esta variable puede estar en __init__.py, y si importamos todo de un paquete que contiene mas paquetes, solo va a importar los modulos que esten en esta lista
 
 from functools import reduce
 #reduce
@@ -261,12 +262,21 @@ list(reduce(funcion,lista)) #aplica funcion con varias variables y un resultado,
 list(reduce(lambda a, b: a + b, sumar(10)))
 
 
-#NUevas lineas
+#__main__
+#Un modulo se denomina __main__ cuando es el modulo de nivel superior que se esta ejecutando en el momento
+if __name__ == "__main__":#Si el modulo se ejecuta como main, va a ejecutar funcion1 y funcion2
+    funcion1()
+    funcion2()
+    import sys #modulo para hacer operaciones con el sistema
+    uno(sys.argv[1]) #argv[0] = String con nombre del archivo; 
+    #argv[1] = String con parametros escritos por consola
+
+    
+
+
 
 #---------------------------------------------------------------------Archivos 
-if __name__ == "__main__": #Sirve para que se ejecute automaticamente
-    import sys
-    uno(sys.argv[1]) #argv[0] = nombre del archivo; argv[1] = parametro escrito por consola
+
 open(nombreArchivo)#crea la asignacion dentro del programa con el archivo y en modo 'r'
 open(nombre,modo)
 modo = {'r':'read','w':'write','a':'append','x':'create'} # 'r'(escritura) y 'w'(escritura) pone el puntero al principio mientras que el 'a' al final. 'x' da error si ek archivo existe
@@ -274,7 +284,7 @@ modo = {'r':'read','w':'write','a':'append','x':'create'} # 'r'(escritura) y 'w'
 arch = open('archivo.txt','w') #Crea archivo.txt para escritura en la misma carpeta del script
 # FileExistError si ya esta creado
 import locale
-locale.getLocale()#Saber codificaion, encoding
+locale.getLocale()#Saber encoding
 
 import os
 ruta = os.path.dirname(os.path.realpath(".")) #ruta actual del archivo
@@ -296,7 +306,7 @@ diccionario = {"equipo": "Bestia", "esport": "CSGO", "pais": "Argentina"}
 lista_de_dic = [{"equipo": "Bestia", "esport": "CSGO", "pais": "Argentina"}, {"equipo": "equipo2", "esport": "CSGO", "pais": "Argentina"}]
 json.dumps(lista_de_dic, indent=4)#Devuelve string
 json.dump(lista_de_dics,archivo)#de Python a JSOn . guarda lista de dic en formato JSON en archivo
-loads()#de JSON a formato Python para string
+json.loads()#de JSON a formato Pythonlist_films para string
 lista_de_dic = json.load(archivo) #convierte JSON a Python. Y guarda el diccionario o lista en la varible 
 #Datasets
 #formato CSV
