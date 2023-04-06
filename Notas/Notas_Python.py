@@ -45,6 +45,7 @@ nombre = 'Lionel'
 intento = 4
 print(f'Hola {nombre} !! Intestaste {intento}') # 'Hola Lionel !! Intentaste 4'
 print(f"La mejor canción de todas:\n{nombre:<30}\n{intento:>50}")  #\n salto de linea, nombre:<30 Justifica izquierda, intento:>50 Justifica derecha
+print(f"{nombre=}") #nombre = 'Lionel'
 print(f"\n{nombre:^30}") #:^30 Centra
 print(f"\n{intento:*^50}") #*^50 Centra con caracter *
 
@@ -72,7 +73,7 @@ paso = 1
 range(valor_inicial,valor_final,paso) # '1,2,3,4,5,6,7,8,9,10'
 range(valor_final) # '0,1,2,3,4,5,6,7,8,9'
 
-#----------------------------------------------------Estructuras de datos
+#----------------------------------------------------Estructuras de datos (Colecciones)
 #Listas
 lista = [] #son mutables
 varios = [1, "dos", [3, "cuatro"], True] #Heteregeneas
@@ -80,32 +81,49 @@ varios[2][1] = [3, "cuatro"]
 lista2 = lista.copy() #Copiar para no hacer referencia a la misma
 duracion_pelis = [152, 161, 142, 157, 138, 153, 146, 130]
 promedio = sum(duracion_pelis) / len(duracion_pelis)
-mayor_prom = [n for n in duracion_pelis if n > promedio] #list comprehension
+#List Comprehension (Teoria de Conjuntos)
+mayor_prom = [n for n in duracion_pelis if n > promedio] # n por cada n en duracion_peli si n es mas grande que promedio
+enzos = [jugador for jugador in jugadores_por_pais.values() for jugadomayor_prom = [n for n in duracion_pelis if n > promedio]r in jugadores if "Enzo" in jugador]
 #Metodos
 lista.append(x) #agrega atras
 lista.sort() #ordena lista
+
 sorted(lista, key=str.lower) #ordena, considerando a todos los str como lower
+list(reversed(lista)) #retorna lista al revez
 sum(list) #suma de los elementos(numeros) de la lista
 len(list) #cantidad de elemntos
+max(duracion_pelis) #retorna el numero maximo de la coleccion
+min(duracion_pelis) #retorna el minimo de la coleccion
 
-#Tuplas (INMUTABLES)
+#Tuplas (INMUTABLES - No se agrega/modificar ni eliminan)
 tupla = ()
 tuplas_1 = (1,) #sin el , no es una tupla
+nombre_y_apellido = ("Fernando", "Lopez")
+nombre_y_apellido = tuple(["Fernando", "Lopez"])
+nombre_y_apellido[1] #'Fernando'
+
 
 #Diccionarios
 dic = {} #diccionario vacio
-dict([(n, ord(n)) for n in string.digits]) #Constructor
-dic = {'clave': 'valor', 'clave1':'valor'} #Claves unicas e inmutables
+dict([(n, ord(n)) for n in string.digits]) #Constructor recibe iterable
+dic = {'clave0': 'valor', 'clave1':20} #Claves unicas e inmutables
 #Metodos
 dic.keys() #lista con llaves
 dic.values() #lista con valores
 dic.items() #lista con claves y valores
+for clave, valor in dic.items(): #recorrer diccionario con variables
+    print(f"{clave} : {valor}")
+
 
 #Conjuntos
 #Coleccion heterogenea, desordenada, valores unicos, no idexada
+#Acceso rapido y eficiente para saber si un elemnto esta en el conjunto
 set('alabanza') # {'a', 'b', 'l', 'z', 'n'}
 bandas_nacionales = set(("Soda Stéreo", "La Renga", "Los Piojos")) #constructor
 bandas = {"AC/DC", "Metallica", "Greta Van Fleet", "Soda Stéreo", "Los Piojos"}
+#Set Comprehension
+mayor_prom_set = {n for n in duracion_pelis if n > promedio}
+
 #Operaciones
 for elem in bandas: #recorrer
     print(elem)    
@@ -172,10 +190,19 @@ print(f(42))
 print(make_incrementor(22)(33))
 
 #map
-map(funcion, lista) #aplica una funcion en cada elemento de la lista, y retorna una estructura de datos tipo map
-#filter
-filter(funcion,lista) #aplica funcion en cada elemento de la lista, y retorna una estructura con los valores que cumpla la condicion
+list(map(funcion, lista)) #aplica una funcion en cada elemento de la lista, y retorna una estructura de datos tipo map
+num_por_dos = list(map(lambda x: x * 2,range(10)))#retorna los numeros de 0 a 9 multiplicados por 2
 
+#filter
+list(filter(funcion,lista)) #aplica funcion en cada elemento de la lista, y retorna una estructura con los valores que cumpla la condicion
+num_div_5 = list(filter(lambda x: x % 5 == 0,range(100)))#retorna los numeros que sean divisivles por 5 de 0 a 99
+
+
+
+#zip 
+list(zip(lista1,lista2,lista3))#itera al mismo tiempo en varias colecciones retorna una estructura con los valores en los mismos indices unidos
+#enumerate
+list(enumerate())#asocia un numero a cada iteracion, retorna tuplas con el numero de iteracion, y el valor
 #Variables locales y globales
 def espacio_de_nombres():
     """ Hay tres espacio de nombres, que se crean en diferentes momentos y tienen diferente tiempo de vida:
@@ -208,15 +235,15 @@ dir(modulo) # Retorna lista ordenada con los nombres definidos
 import builtins
 dir(builtins) #retorna lista ordenada con nombres predefinidos
 
-#Modulos ejemplos
+#Modulos 
 
 import collections #Este modulo tiene mas estructuras de datos que las definidas por el lenguaje
 cant_letras = collections.Counter('asxfgf')
 print(cant_letras.most_common(1)) #retorna la letra mas comun
-d = deque('xxcvdf') #pilas y colas
+d = collections.deque('xxcvdf') #pilas y colas
 
 import sys
-sys.exit() #sale del programa actual
+#sys.exit() #sale del programa actual
 sys.path #Lista de cadenas donde cada cadena son los directorios donde busca los modulos
 sys.platform #Retorna sistema operativo
 
@@ -228,10 +255,15 @@ digitos = string.digits #'0123456789'
 #__init__.py si este archivo esta en la carpeta, python interpreta el directorio como un paquete
 __all__ = ["echo","surround"] #esta variable puede estar en __init__.py, y si importamos todo de un packete que contiene mas paquetes, solo va a importar los modulos que esten en esta lista
 
+from functools import reduce
+#reduce
+list(reduce(funcion,lista)) #aplica funcion con varias variables y un resultado, retorna la operacion en un iterable
+list(reduce(lambda a, b: a + b, sumar(10)))
+
 
 #NUevas lineas
 
-#Archivos 
+#---------------------------------------------------------------------Archivos 
 if __name__ == "__main__": #Sirve para que se ejecute automaticamente
     import sys
     uno(sys.argv[1]) #argv[0] = nombre del archivo; argv[1] = parametro escrito por consola
