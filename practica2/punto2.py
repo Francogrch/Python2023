@@ -1,7 +1,11 @@
 """
-1. Tomando el texto del README.md de numpy, copiar y pegar el texto en una variable, luego
-imprima todas las líneas que contienen 'http' o 'https'.
+2. Indique la palabra que aparece mayor cantidad de veces en el texto del README.md de numpy.
+Copie y pegue el texto en una varible.
+
 """
+import collections
+import string
+print(f"{'Punto2':-^40}")
 readme = """NumPy is the fundamental package for scientific computing with Python.
 
 - **Website:** https://www.numpy.org
@@ -69,9 +73,9 @@ mailing list. You are very welcome to join.
 If you are new to contributing to open source, [this
 guide](https://opensource.guide/how-to-contribute/) helps explain why, what,
 and how to successfully get involved."""
+list_readme = readme.lower().split() #Separamos las palabras
+list_words = list(filter(lambda x: x[0] in string.ascii_letters,list_readme)) #hace una lista con solo los elementos que comiencen con una letra
+count_list = collections.Counter(list_words) #crea un objeto parecido a un diccionario la clave es igual a la palabra y el valor la cantidad de veces que aparece
+max_word = count_list.most_common(1)#retorna una tupla dentro de una lista con la cantidad y el elemento que mas veces aparecio
 
-print(f"{'Punto1':-^40}")
-list_readme = readme.split("\n") 
-for word in list_readme:
-    if "http" in word or "https" in word:
-        print(word)
+print(f"La palabra que mas aparece es: '{max_word[0][0]}' con {max_word[0][1]} veces. ")
