@@ -330,4 +330,82 @@ with open("bandas.csv") as archcsv:
     csv_reader = csv.reader(archcv, delimiter=',')
 
 #cierra automaticamente el archivo
-#Desafio
+#Repaso archivo
+archivo = open('datos.txt','x') #si existe da error
+archivoB = open('eejemplo',"rb") #lectura de tipo binario
+textoBinario = archivoB.read()
+type(textoBinario) # bytes
+#bytes admite caracteres ASCII
+textoBinario.decode('UTF-8') #Decodifica binario en UTF-8
+
+# JSON vs CSV - archivos de texto
+#JSON formato dicionario
+#CSV ordenado como tabla
+datos = [{'Hola':123}{}[}]]
+with open("criptomonedas.json","w") as archivo:
+    json.dump(datos, archivo)
+
+with open("criptomonedas.json","w") as archivo:
+    datos = json.load(archivo)
+datos_mostrar = json.dumps(archivo)
+#pasat json a csv
+#CSV siempre transforma todo a texto para trabajar con numeros hay que castear
+import csv
+with open('arch.csv','w') as archivo:
+        writer = csv.writer(archivo)
+        writer.writerrow(["Sigla","Cripto","Corizacion"])#De a una fila, este es el encabezado
+        for moneda in datos:
+            writer.writerow(moneda['nombre'],moneda['Cripto'],moneda['Corizacion'])
+                            
+with open('arch.csv','r') as archivo:
+        csv_reader = csv.reader(archivo)
+        encabezado, datos = next(csv_reader), list(csv_reader) #guardamos la primer fila como encabezado y los datos como una lista
+
+pelis = filter(lambda x: float(x[5])>9,datos) #Es necesario el casteo ya que el csv tiene strings
+
+import requests
+link = "https//image.tmdb.org/t/p/.../.jpg"
+imagen = requests.get(link)#con get devuelve el recurso, si es una pagina devuelve HTML
+with open('nombreFoto.jpg','wb') as f:
+    f.write(link.content)#content estan los bytes de la imagen
+
+
+
+
+import os
+os.getcwd() #retorna ruta en forma de string
+
+
+#GUI
+#Grapphical User Interface
+#PySimpleGUI
+
+"""
+Acá van algunos disponibles en PySimpleGUI
+– Buttons: File Browse, Folder Browse, Color chooser, Date picker, etc.
+– Checkbox, Radio Button, Listbox
+– Slider, Progress Bar
+– Multi-line Text Input, Scroll-able Output
+– Image, Menu, Frame, Column, Graph, Table
+"""
+import PySimpleGUI as sg
+sg.Popup('MI primera ventanta') #Ventana emergente
+sg.PopupYesNo()
+sg.PopupOKCancel()
+texto = sg.popupGetText('Titulo','Ingresar Texto')
+sg.Popup('Resultados','Ingresaste el siguiente texto',texto)
+sg.Window(title='titulo', layout[[]],margins=(400,350)).read()#read devuelve tupla con evento
+
+#ejemplo
+layout = [[sg.Text("Hola Mundo!")], [sg.Button("OK")]]
+window = sg.Window("Manejo de eventos", layout, margins=(200, 150))
+
+while True:
+    event, values = window.read() #Se queda en la espera hasta que ocurra un evento
+    if event == "OK" or event == sg.WIN_CLOSED:
+        break
+window.close()
+
+layout = [ [sg.Text('Ingresá primer valor'), sg.InputText()], [sg.Text('Ingresá segundo valor'), sg.InputText()], [sg.Button('Ok'), sg.Button('Cancel')] ] #lista de listas, son los elementos de la interfaz
+
+sg.ChangeLookAndFeel("Darlamber")#cambia el esquema de colores
