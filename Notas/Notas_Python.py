@@ -409,3 +409,77 @@ window.close()
 layout = [ [sg.Text('Ingresá primer valor'), sg.InputText()], [sg.Text('Ingresá segundo valor'), sg.InputText()], [sg.Button('Ok'), sg.Button('Cancel')] ] #lista de listas, son los elementos de la interfaz
 
 sg.ChangeLookAndFeel("Darlamber")#cambia el esquema de colores
+
+
+#Excepciones
+#Nunca debera mostrar el error el programa
+#es un acontencimiento, que ocurre durante la ejecucion del programa , y rompe el flujo del programa
+#Sirve para que el programa no se rompa
+#El programa continua hasta el final
+#Si encuentra la exception mata el bloque que esta dentro del try
+try:
+    sentencia #Sentencias que pueden producir excepciones
+except nombreExcepcion:
+    sentencia
+except nombreExcepcion o nombresExcepciones:
+    sentencia
+except:
+    print('Chau')
+#Ejemplo
+try:
+    print(xx)
+except NameError:
+    print('Usaste una variable que no esta definida')
+
+mi_musica = {70: ["Stairway to heaven", "Bohemian Rhapsody"],
+80: ["Dancing in the dark", "Welcome to the jungle", "Under␣
+↪pressure"],
+2000:["Given up", "The pretender"]}
+tema = input("Ingresá un nuevo tema (FIN para terminar): ")
+while tema !="FIN":
+try:
+decada = int(input("ingresá a qué década pertenece: "))
+mi_musica[decada].append(tema)
+except (ValueError, KeyError):
+print("Hubo un error en el ingreso de datos. Intentá de nuevo")
+except:
+print("Ups! Algo ocurrió")
+tema = input("Ingresá un nuevo tema (FIN para terminar): ")
+print("Terminé de procesar mi música favorita")
+
+"""
+NameError
+IndexError
+"""    
+#Terminacion de Procesos
+#Al encontrar la excepcion salta al except directamente y finaliza el bloque que esta dentro del try
+
+#Python busca la exepcion y si no la encuntra l busca en el bloque anterior
+bandas_rock = {0:"Led Zeppelin", 2:"Deep Purple", 3:"Black Sabbath"}
+try:
+for x in range(0,6):
+    try:
+        print(bandas_rock[z])
+        # OJO que estamos usando la variable z
+    except KeyError:
+        print("Ups! Parece que hubo un problema..")
+except NameError:
+    print('OJO! Se está usando una variable que no existe')
+print('Sigo con mi programa....')
+
+#Metodo de propagacion
+#1. busca estaticamente
+#2. busca dinamicamente
+#3. retorna la exepcion
+try:
+    sentencias
+except excepcion1:
+    sentencias
+except:
+    sentencias
+else:
+    sentencias
+finally:
+    sentencias
+
+
