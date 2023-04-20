@@ -482,4 +482,71 @@ else:
 finally:
     sentencias
 
+#Trabajo final
+#Un repositorio de GIT en GITLAB
+#README
+"""
+__init__.py es necesario para que se cree un proyecto de python y podamos importar paquetes
+formato README.mb
+Instalacion
+=============
+Subtitulo
+---------
+* item
+* item
+```
+codigo python holamundo/holamundo.py
+```
+"""
+import PySimpleGUI as sg
+from PIL import Image,ImageTk #Libreria para imagenes
+import os.path
+layout = [[sg.Input(key="-NOMBRE-")], #Se utiliza key para nombrar al objeto, guiones y mayus
+          [sg.Image(key='-MEME-')],
+          [sg.Button("-ACEPTAR-",key = "-ACEPTAR-")],
+          [sg.Input(key='-INPUT2-')]]
 
+window = sg.Window("Titulo de la ventana",layout)
+
+while True:
+    event, value = window.read() #read devuelve una tupla donde primer elemento es un str y
+    print(f'{event}{value}{window["-NOMBRE-"]}') #con window se puede acceder al objeto
+    if event == sg.WIN_CLOSED:
+        break
+    elif event == '-ACEPTAR-':
+        window['-NOMBRE-'].update('Ingrese nuevo nombre') #con el objeto se puede hacer interacciones
+        meme = Image.open(os.path.join('carpeta','nombre.png'))#Utilizamos os.path.join para el path relativo
+        meme_tk = ImageTk.PhotoImage(meme) #Convierte el Image a ImageTk ya que PySimpleGUI solo entiende este formato
+        window['-MEME-'].update(data=meme_tk)
+window.close()
+#Ventanas multiples
+#una ventana tiene un layout, al crear windows leemos con windows.read()
+import PySimpleGUI as sg
+def crear_ventana_principal():
+    layout=[]
+    return sg.window("Ventana principal",layout,finalize=True) #Finalize es necesario para trabajar con multiples ventanas
+
+def crear_ventana_secundaria():
+    layout = []
+    return sg.Window("Ventana secundaria",layout,finalize=True)
+
+while True: 
+    #En ves de llamar a windows.read()  llama a .read_all_windows()
+    current_window, event, values = sg.read_all_windows()
+
+    print(f'{event}{value}{window["-NOMBRE-"]}') #con window se puede acceder al objeto
+    if event == sg.WIN_CLOSED:
+        break
+    elif event == '-ACEPTAR-':
+        crear_ventana_secundaria()
+        current_window.close()
+window.close()
+
+
+#manipular imagenes
+from PIL import Image, ImageTk
+
+#manejo de directorios
+import os
+import os.path
+directorio_base = os.path.dirname(__file__) #retorna el directorio base
