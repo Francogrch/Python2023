@@ -431,20 +431,18 @@ try:
 except NameError:
     print('Usaste una variable que no esta definida')
 
-mi_musica = {70: ["Stairway to heaven", "Bohemian Rhapsody"],
-80: ["Dancing in the dark", "Welcome to the jungle", "Under␣
-↪pressure"],
-2000:["Given up", "The pretender"]}
+mi_musica = {70: ["Stairway to heaven", "Bohemian Rhapsody"], 80: ["Dancing in the dark", "Welcome to the jungle", "Under␣
+↪pressure"],2000:["Given up", "The pretender"]}
 tema = input("Ingresá un nuevo tema (FIN para terminar): ")
 while tema !="FIN":
-try:
-decada = int(input("ingresá a qué década pertenece: "))
-mi_musica[decada].append(tema)
-except (ValueError, KeyError):
-print("Hubo un error en el ingreso de datos. Intentá de nuevo")
-except:
-print("Ups! Algo ocurrió")
-tema = input("Ingresá un nuevo tema (FIN para terminar): ")
+    try:
+        decada = int(input("ingresá a qué década pertenece: "))
+        mi_musica[decada].append(tema)
+    except (ValueError, KeyError):
+        print("Hubo un error en el ingreso de datos. Intentá de nuevo")
+    except:
+        print("Ups! Algo ocurrió")
+    tema = input("Ingresá un nuevo tema (FIN para terminar): ")
 print("Terminé de procesar mi música favorita")
 
 """
@@ -470,17 +468,30 @@ print('Sigo con mi programa....')
 #Metodo de propagacion
 #1. busca estaticamente
 #2. busca dinamicamente
-#3. retorna la exepcion
+#3. retorna la exepcion si existe, en el caso que no retorna error
 try:
     sentencias
-except excepcion1:
+except excepcion1,expecion2:
     sentencias
-except:
+except expecion3 as variable:
     sentencias
-else:
+else:#Se ejecuta solo si no se produjo/levanto una expecion
     sentencias
-finally:
+finally:#Se ejeucta siempre, por mas que no halla una exepcion
     sentencias
+#Clase 7
+#Si se genera una expecion salta al expet y luego no sigue
+raise KeyError #De esta manera se puede levantar una exepcion de manera directa
+raise #Levanta la ultima expecion                    
+try 
+    ...
+except KeyErorr as exc
+    dato_error = exc
+    import sys
+    print(sys.exc_info())
+print(dato_error) #En dato error esta guardado el valor con el cual se levanto la exepcion 
+
+
 
 #Trabajo final
 #Un repositorio de GIT en GITLAB
@@ -550,3 +561,4 @@ from PIL import Image, ImageTk
 import os
 import os.path
 directorio_base = os.path.dirname(__file__) #retorna el directorio base
+
