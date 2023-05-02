@@ -562,3 +562,60 @@ import os
 import os.path
 directorio_base = os.path.dirname(__file__) #retorna el directorio base
 
+#Clase 8
+#--------------------Conceptos de la POO
+#Obejeto: entidad que encapsula propiedades y funciones
+#Metodos = comportamiento del objeto
+#Propiedades =  estado interno
+#Clases: estructura de un objeto, tanto metodos como propiedades.
+#Instancias de una clase:
+#Interfaz publica es lo que se puede acceder dentro del objeto por fuera de la clase
+
+#Definicion de clase
+class NombreClass: #CamelCase para clases segun PEP8
+    sentencias
+#Crea un nuevo espacio de nombres: tabla con nombres de variables
+
+#Instanciar una clase
+objeto = NombreClase()
+
+class Usuario():
+    """Define la entidad que representa a un usuario en UNLPImage"""
+    #Todas las instancias de clases apuntan a las mismas "variables de clases"
+    profesores = [] #variable de clase
+    #Se puede acceder a la variable con el nombre de la clase o se puede acceder mediante un metodo
+    
+    #Inicializador, no constructor - Lugar donde se definen las variables de instancia
+    def __init__(self,nom="Tony Stark",alias="Ironman"):#Para poder hacer sobrecarga de "Inicializadores", hay que poner valores por defecto
+        self.nombre = nom #variable de instancia publica
+        self.nick = alias #variables de instancia publica
+        self._avatar = None #vairable de instancia Privada
+        self.__pass = None #variable de instancia mas privada
+    #Metodos
+    def cambiar_nombre(self,nombre):#El primer argumento siempre se llamara self, ya que la variable que este en ese lugar tendra esa funcion
+        self.nombre = nombre
+    #Getter y Setters
+    def get_profesores(self):
+        return self.profesores
+    #al momento de invocar a cambiar_nombre solamente sera con un parametro
+
+#Agregar de forma dinamica variables de instancia o metodos
+class SuperHeroe:
+    pass
+tony = SuperHeroe()
+tony.nombre = "Tony Stark"
+tony.sot_Ironman = lambda : True if tony.alias == "Ironman" else False
+#Borrar dinamicamente con palabra reservada del
+del tony.nombre
+
+#En python no hay variables privadas, por ende hay una convencion
+#Por convencion las variables o metodos privadas se anteponen un '_'
+#Para que por fuera no se pueda utilizar se ante pone '__', se puede acceder de igualmanera mediante la clase
+#En python cuando un identificador comienza con '__' es remplazado por _NombreClase__
+
+#Nomrbe de metodos especiales
+# __lt__ < >
+# __str__ para cuando llamamos al objeto y retorne un str
+
+
+#
