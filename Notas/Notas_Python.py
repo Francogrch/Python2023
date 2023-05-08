@@ -616,6 +616,51 @@ del tony.nombre
 #Nomrbe de metodos especiales
 # __lt__ < >
 # __str__ para cuando llamamos al objeto y retorne un str
-
-
 #
+class NombrePrueba(): #CamelCase
+    #estado interno
+    def __init__(self, var1, var2): # Metodo init para definir variables de instancia
+        self._var1 = var1 #variable privada
+        self.__var2 = var2 #variable super privada
+    def cambiar_nombre(self,var1): #comportamientos es necesario el self siempre
+        self._var1 = var1
+    
+    #Getters y setters
+    def get_var1(self): #retornar la variable
+        return _var1
+    
+    def set_var1(self,var1): #modificar la variable
+        self._var1=var1
+    def del_var1(self,var1):
+        del self._var1
+    #Property
+    #Permiten trabajr con las variables de instacia no publicas, llamando a las funciones que esten por parametro
+    var1 = property(get_var1,set_var1,del_var1,'Este es el doctring')
+    #Forma general
+    property(fget=None, fset=None, fdel=None, doc=None)
+
+    #decorador
+    @property
+    def x(self):
+        return self
+    
+    @x.setter
+    def x(self, value):
+        self.x = value
+
+#Un decorador es una funcion que recibe una funcion como parametro
+def decorador(funcion):
+    def funcion_interna():
+        funcion()
+    return funcion_interna()
+
+def otra_funcion:
+    pass
+
+variable = decorador(otra_funcion)
+#Es lo mismo que escribirlo de esta manera
+@decorador
+def variable():
+    pass
+
+
