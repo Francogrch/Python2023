@@ -618,10 +618,12 @@ del tony.nombre
 # __str__ para cuando llamamos al objeto y retorne un str
 #
 class NombrePrueba(): #CamelCase
-    #estado interno
+    varGlob = None #Variable de clase
+    #ESTADO INTERNO
     def __init__(self, var1, var2): # Metodo init para definir variables de instancia
         self._var1 = var1 #variable privada
         self.__var2 = var2 #variable super privada
+    #Metodos
     def cambiar_nombre(self,var1): #comportamientos es necesario el self siempre
         self._var1 = var1
     
@@ -637,7 +639,7 @@ class NombrePrueba(): #CamelCase
     #Permiten trabajr con las variables de instacia no publicas, llamando a las funciones que esten por parametro
     var1 = property(get_var1,set_var1,del_var1,'Este es el doctring')
     #Forma general
-    property(fget=None, fset=None, fdel=None, doc=None)
+    property(fget=None, fset=None, fdel=None, doc=None)#Definir propiedades para que solamente se acceda por metodos, VARIABLES PRIVADAS
 
     #decorador
     @property
@@ -648,11 +650,12 @@ class NombrePrueba(): #CamelCase
     def x(self, value):
         self.x = value
 
+
 #Un decorador es una funcion que recibe una funcion como parametro
 def decorador(funcion):
     def funcion_interna():
         funcion()
-    return funcion_interna()
+    return funcion_interna #Sin () para que retorne el objeto funcion y no lo que retorna la funcion
 
 def otra_funcion:
     pass
@@ -662,5 +665,33 @@ variable = decorador(otra_funcion)
 @decorador
 def variable():
     pass
+
+#Metodo de clase
+@classmethod
+def limpio_generos(cls, confirmo=False) #se utiliza cls ya que hace referencia a la clase
+    if confirmo:
+        cls.generos = set()
+
+#Herencia
+#Clase base
+#Clase derivada
+class ClaseDerivada(ClaseBase):
+    def __init__(self,nombre,banda=None):
+        ClaseBase.__init__(self,nombre,"guitarra",banda)#Es necesario llamar al __init__ del padre
+        self.instrumento = "guitarra acustica"
+    def info(self): #Si este metodo tambien existe en la ClaseBase, se quedara con el metodo de la claseDerivada
+        print('Inforamcion')
+
+isinstance(Clase1,Clase2) #Es instancias
+issubclass(Clase1,Clase2) #Es subclase
+
+#Herencia multiple
+
+class ClaseDerivadaMultiple(ClaseBase1,ClaseBase2): #La ClaseBase1 tiene mas prioridad MRO
+    def __init__(self,var1,var2):
+        ClaseBase1.__init__()
+        CLaseBase2.__init__()
+#MRO
+ClaseDerivadaMultiple.__mro__ #retorna una lista con la prioridad al momento de buscar metodos o variables de clase 
 
 
