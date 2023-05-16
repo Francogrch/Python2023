@@ -197,27 +197,10 @@ num_por_dos = list(map(lambda x: x * 2,range(10)))#retorna los numeros de 0 a 9 
 list(filter(funcion,lista)) #aplica funcion en cada elemento de la lista, y retorna una estructura con los valores que cumpla la condicion
 num_div_5 = list(filter(lambda x: x % 5 == 0,range(100)))#retorna los numeros que sean divisivles por 5 de 0 a 99
 
-
-
 #zip 
 list(zip(lista1,lista2,lista3))#itera al mismo tiempo en varias colecciones retorna una estructura con los valores en los mismos indices unidos
 #enumerate
 list(enumerate())#asocia un numero a cada iteracion, retorna tuplas con el numero de iteracion, y el valor
-#Variables locales y globales
-def espacio_de_nombres():
-    """ Hay tres espacio de nombres, que se crean en diferentes momentos y tienen diferente tiempo de vida:
-        - __builtins__: se crea al iniciar el interprete y nunca se elimina
-        - Globales: se crea en la definicion de un modulo y normalmente tambien dura hasta que el interprete finaliza
-        - Locales: se crean al invocar una funcion es llamada y se elimina cuando la funcion retorna    
-    """
-    y = 1
-    def prueba_2():
-        nonlocal y #para poder acceder a la variable anterior a la funcion
-        y = 11
-        return 1
-    
-    global x #para acceder a variable global
-    x = 3
 
 #---------------------------------------------Modulos
 import nombreModulo #Con esto podemos acceder a las funciones y variables del modulo(archivo)
@@ -234,6 +217,24 @@ dir(modulo) # Retorna lista ordenada con los nombres definidos
 
 import builtins
 dir(builtins) #retorna lista ordenada con nombres predefinidos
+
+#
+def espacio_de_nombres():
+    """ Hay tres espacio de nombres, que se crean en diferentes momentos y tienen diferente tiempo de vida:
+        - __builtins__: se crea al iniciar el interprete y nunca se elimina
+        - Globales: se crea en la definicion de un modulo y normalmente tambien dura hasta que el interprete finaliza
+        - Locales: se crean al invocar una funcion es llamada y se elimina cuando la funcion retorna    
+    """
+    y = 1
+    def prueba_2():
+        nonlocal y #para poder acceder a la variable anterior a la funcion
+        y = 11
+        return 1
+    
+    global x #para acceder a variable global
+    x = 3
+
+
 
 #Modulos 
 
@@ -341,7 +342,7 @@ textoBinario.decode('UTF-8') #Decodifica binario en UTF-8
 # JSON vs CSV - archivos de texto
 #JSON formato dicionario
 #CSV ordenado como tabla
-datos = [{'Hola':123}{}[}]]
+datos = [{'Hola':123},{},[]]
 with open("criptomonedas.json","w") as archivo:
     json.dump(datos, archivo)
 
